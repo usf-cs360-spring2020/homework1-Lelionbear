@@ -12,6 +12,7 @@
 
     <!-- Load Font Awesome 5 (free) icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
   </head>
 
   <body>
@@ -88,11 +89,6 @@
         <!-- Right navbar items -->
         <div class="navbar-end">
           <a class="navbar-item" href="#about" title="About">
-            <span class="icon"><i class="fas fa-tasks"></i></span>
-            <span>Grade</span>
-          </a>
-
-          <a class="navbar-item" href="#about" title="About">
             <span class="icon"><i class="fas fa-info-circle"></i></span>
             <span>About</span>
           </a>
@@ -107,138 +103,40 @@
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          Homepage for Homework 1
+          LineChart Visualization
         </h1>
-        <p class="subtitle">
-          Discription
-        </p>
 
-        <p>
-        This page consists of an overview of data collected for homework 1 from my Data Visualization class.
-        All visualizations can be found below or the navigation bar at the top of the page.
-        The home page also includes information about dataset used in visualizations and self grading.
-        <br><br>
-        For this assignment I collected data from the Data SF website and created Three visualizations with Tableau.
-        The next step would be to recreate two of these visualizations in D3.
-        This is my first attempt at data manipulation and visualization with D3 so roast me Data Vis ppl.
-        </p>
+        <h2 id="data">Purpose</h2>
+        <p>This linechart visualization is to view the trends of total passengers flying within a year from SFO Airport from 2005 to 2019 (as of February 2020).</p>
 
-        <h2 id="data">Data</h2>
+        <h2 id="data">Wrangling</h2>
+        <p>For this linechart the data was filtered using Activity Period and Passenger Count from <a href=https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/>Data SF</a>.
+          <br>The used .csv file can be found <a href="https://github.com/usf-cs360-spring2020/homework1-Lelionbear">here</a>.</p>
+
+        <h2 id="data">Tableau</h2>
+        <figure >
+        <img  src="GRAPH_2.png"></img>
+        </figure>
+
+        <!-- <h2 id="data">d3.js</h2>
+        <svg></svg> -->
 
         <p>Data set was taken from <a href=https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/>Data SF</a> and shows the Air Traffic Passenger Statistics for the San Francisco international airport.</br>
         Data period from July 2005 to September 2019 (as of this date in February 2020)</p>
 
-        <blockquote>
-          <p>
-            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
-          </p>
-          <cite><a href=https://support.datasf.org/help/what-license-are-open-data-sets-under>Data SF license information</a></cite>
-        </blockquote>
-
-        <p>Dataset consists of San Francisco International Airport monthly reports with data on number of passengers and some statistics by airlines.
-            Here is the list of columns:</p>
-        <ol>
-          <li><strong>Activity Period:</strong> Number. Shows the data of report in yyyy/mm format.</li>
-          <li><strong>Operating Airline:</strong> Text. Operating airline of a flight.</li>
-          <li><strong>Operating Airline IATA Code:</strong> Text. International Air Transport Association code (location identifier) of operating airline.</li>
-          <li><strong>Published Airline:</strong> Text. Published airline of a flight. (The airline that was supposed to operate the flight).</li>
-          <li><strong>Published Airline IATA Code:</strong>Text. nternational Air Transport Association code (location identifier) of published airline.</li>
-          <li><strong>GEO Summary:</strong> Text. International or Domestic flight.</li>
-          <li><strong>GEO Region:</strong> Text. Geographic region of the flight.</li>
-          <li><strong>Activity Type Code:</strong> Text. Deplaned, enplaned or transit flight code.</li>
-          <li><strong>Price Category Code:</strong> Text. Low fare/other price code.</li>
-          <li><strong>Terminal:</strong> Text. Terminal of arrival, departure or transit.</li>
-          <li><strong>Boarding Area:</strong> Text. Boarding area of the flight.</li>
-          <li><strong>Passenger Count:</strong> Number. Shows the number of passengers for a particular data.</li>
-        </ol>
-
-        <p>Not all columns were used for my visualizations.</p>
-
-        <h2 id="visualizations">Visualizations</h2>
-
-        <p>Below are the different data visualizations made with the Tableau and D3.js</p>
-
-        <p class="buttons">
-          <a class="button is-large is-success" href="lineChart.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-line"></i>
-            </span>
-            <span>Line Chart</span>
-          </a>
-
-          <a class="button is-large is-primary" href="areaChart.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-area"></i>
-            </span>
-            <span>Area Chart</span>
-          </a>
-
-          <a class="button is-large is-info" href="barChart.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-bar"></i>
-            </span>
-            <span>Bar Chart</span>
-          </a>
-
-          <!-- <a class="button is-large is-link" href="#">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-pie"></i>
-            </span>
-            <span>Pie Chart</span>
-          </a> -->
+        <h2 id="data">Analysis</h2>
+        <p>
+        Passenger count is encoded as the y-axis of chart thus higher peeks represent higher passenger count.
+        <br>
+        Months are represented as the x-axis, so total passengers from 2005-2019 time period can be observed in a monthly viewpoint.
+        <br>
+        <br>
+        From this linechart we can see that flights increase from the February-August in a steady rate while having a decrease within September-January.
+        Information that can be extrapulated from this data. First, there is a large flow of passengers at the start of the years while a decrease at the end of the years.
+        This is surprisingly interesting because most of the capitalistic holidays are near the end of a year (thanksgiving, christmas, new years).
         </p>
 
-        <span class="heading">Acknowledgements</span>
 
-        <p>A lot of the code for these graphs came from Sophie Engle's <a href="https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95">ZillowHeat Map</a> on block builder,
-          and her <a href="https://gist.github.com/sjengle/01c24c71016a97938beae8c778c15911">Letter count bar chart</a>.
-        </p>
-
-        <h2 id="grade">Grade</h2>
-
-        <style>
-          table.grades tbody tr td:nth-child(1),
-          table.grades tbody tr td:nth-child(2) {
-            text-align: center;
-          }
-        </style>
-
-        <table class="table is-hoverable is-bordered grades">
-          <thead>
-            <tr>
-              <th>Letter</th>
-              <th>Done?</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>D</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau</td>
-            </tr>
-
-            <tr>
-              <td>C</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau</td>
-            </tr>
-
-            <tr>
-              <td>B</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau and 1 additional visualization with d3.js</td>
-            </tr>
-
-            <tr>
-              <td>A</td>
-              <td><i class="has-text-danger fas fa-times-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau and 2 additional visualization with d3.js</td>
-            </tr>
-          </tbody>
-
-        </table>
 
         <h2 id="about">About</h2>
 
