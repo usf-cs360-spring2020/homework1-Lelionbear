@@ -7,6 +7,12 @@ svg {
   fill: white;
 }
 
+.line {
+  fill: none;
+  stroke: #0000005b;
+  stroke-width: 3;
+}
+
 .bar {
   stroke-width: 1px;
   fill: LightSkyBlue;

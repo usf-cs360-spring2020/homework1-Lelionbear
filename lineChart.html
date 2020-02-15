@@ -13,6 +13,13 @@
     <!-- Load Font Awesome 5 (free) icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style type="text/css">
+      .line {
+        fill: none;
+        stroke: #0000005b;
+        stroke-width: 3;
+      }
+    </style>
   </head>
 
   <body>
@@ -258,6 +265,10 @@
   config.plot.width = config.svg.width - config.margin.left - config.margin.right;
   config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
 
+  var margin = {top: 10, right: 10, bottom: 20, left: 80}
+    , width =960
+    , height = 450
+
   // setup svg
   let svg = d3.select('body').select('svg');
   svg.attr('width', config.svg.width);
@@ -271,17 +282,14 @@
   // function to convert each row
   // https://github.com/d3/d3-fetch/blob/master/README.md#csv
   function convertRow(row, index) {
-    console.log(row);
+    // console.log(row);
       let out = {};
 
       for (let col in row) {
-        console.log(col);
+        // console.log(col);
 
         switch (col) {
           case 'Passenger Count':
-            console.log("ok");
-            console.log(row[col]);
-            console.log("pc");
             out[col] = row[col];
             break;
 
@@ -298,25 +306,50 @@
             break;
           // these should be our time series values
           default:
-            console.log("IN DEFAULT");
+            // console.log("IN DEFAULT");
       }
-
-      return out;
     }
+    return out;
  }
 
+   var x_scale = d3.scaleBand()
+       .range([0, width])
+
+   var y_scale = d3.scaleLinear()
+       .range([height, 0])
+
+   var line = d3.line()
+    .x(function(d) { return x_scale(d['Month of Date']); })
+    .y(function(d) { return y_scale(d['Passenger Count']); })
 
 
   function drawLine(data){
     let passenger_count = data.map(row => row['Passenger Count']);
-    console.log(passenger_count);
+    // console.log(passenger_count);
 
     let dates = data.map(row => row['Month of Date']).filter(
       (value, index, self) => {return self.indexOf(value) === index}
     );
-    console.log(dates);
+    // console.log(dates);
 
-      }
+    // console.log(data);
+    let maxPassengers = d3.max(passenger_count);
+    x_scale.domain(dates);
+    y_scale.domain([0,maxPassengers]);
+
+    svg = d3.select("body").select("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("path")
+        .datum(data)
+        .attr("class", "line")
+        .attr("transform", "translate(50)")
+        .attr("d", line);
+
+  }
   </script>
   <!-- End mobile menu responsiveness -->
   </body>
