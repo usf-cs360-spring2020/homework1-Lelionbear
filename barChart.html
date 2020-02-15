@@ -12,6 +12,7 @@
 
     <!-- Load Font Awesome 5 (free) icons -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
   </head>
 
   <body>
@@ -88,11 +89,6 @@
         <!-- Right navbar items -->
         <div class="navbar-end">
           <a class="navbar-item" href="#about" title="About">
-            <span class="icon"><i class="fas fa-tasks"></i></span>
-            <span>Grade</span>
-          </a>
-
-          <a class="navbar-item" href="#about" title="About">
             <span class="icon"><i class="fas fa-info-circle"></i></span>
             <span>About</span>
           </a>
@@ -107,132 +103,32 @@
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          Homepage for Homework 1
+          BarChart Visualization
         </h1>
-        <p class="subtitle">
-          Discription
-        </p>
 
-        <p>This would be an excellent place to describe what this page is for, what to find in different sections, describe any motivation or theme behind your visualizations, and so on.</p>
+        <h2 id="data">Purpose</h2>
+        <p>This barchart visualization is to view the trends of total yearly flights from SFO Airport from 2005 to 2019 (as of February 2020).</p>
 
-        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>
+        <h2 id="data">Wrangling</h2>
+        <p>For this bar chart the data was filtered using Activity Period and Passenger Count from <a href=https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/>Data SF</a>.
+          <br>The used .csv file can be found <a href="https://github.com/usf-cs360-spring2020/homework1-Lelionbear">here</a>.</p>
 
-        <h2 id="data">Data</h2>
+        <h2 id="data">Tableau</h2>
+        <figure >
+        <img  src="GRAPH_1.png"></img>
+        </figure>
+
+        <h2 id="data">d3.js</h2>
+        <svg></svg>
 
         <p>Data set was taken from <a href=https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/>Data SF</a> and shows the Air Traffic Passenger Statistics for the San Francisco international airport.</br>
         Data period from July 2005 to September 2019 (as of this date in February 2020)</p>
 
-        <blockquote>
-          <p>
-            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
-          </p>
-          <cite><a href=https://support.datasf.org/help/what-license-are-open-data-sets-under>Data SF license information</a></cite>
-        </blockquote>
 
-        <p>Dataset consists of San Francisco International Airport monthly reports with data on number of passengers and some statistics by airlines.
-            Here is the list of columns:</p>
-        <ol>
-          <li><strong>Activity Period:</strong> Number. Shows the data of report in yyyy/mm format.</li>
-          <li><strong>Operating Airline:</strong> Text. Operating airline of a flight.</li>
-          <li><strong>Operating Airline IATA Code:</strong> Text. International Air Transport Association code (location identifier) of operating airline.</li>
-          <li><strong>Published Airline:</strong> Text. Published airline of a flight. (The airline that was supposed to operate the flight).</li>
-          <li><strong>Published Airline IATA Code:</strong>Text. nternational Air Transport Association code (location identifier) of published airline.</li>
-          <li><strong>GEO Summary:</strong> Text. International or Domestic flight.</li>
-          <li><strong>GEO Region:</strong> Text. Geographic region of the flight.</li>
-          <li><strong>Activity Type Code:</strong> Text. Deplaned, enplaned or transit flight code.</li>
-          <li><strong>Price Category Code:</strong> Text. Low fare/other price code.</li>
-          <li><strong>Terminal:</strong> Text. Terminal of arrival, departure or transit.</li>
-          <li><strong>Boarding Area:</strong> Text. Boarding area of the flight.</li>
-          <li><strong>Passenger Count:</strong> Number. Shows the number of passengers for a particular data.</li>
-        </ol>
 
-        <p>Not all columns were used for my visualizations.</p>
 
-        <h2 id="visualizations">Visualizations</h2>
 
-        <p>Below are the different data visualizations made with the Tableau and D3.js</p>
 
-        <p class="buttons">
-          <a class="button is-large is-success" href="lineChart.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-line"></i>
-            </span>
-            <span>Line Chart</span>
-          </a>
-
-          <a class="button is-large is-primary" href="areaChart.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-area"></i>
-            </span>
-            <span>Area Chart</span>
-          </a>
-
-          <a class="button is-large is-info" href="barChart.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-bar"></i>
-            </span>
-            <span>Bar Chart</span>
-          </a>
-
-          <!-- <a class="button is-large is-link" href="#">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-pie"></i>
-            </span>
-            <span>Pie Chart</span>
-          </a> -->
-        </p>
-
-        <span class="heading">Acknowledgements</span>
-
-        <p>A lot of the code for these graphs came from Sophie Engle's <a href="https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95">ZillowHeat Map</a> on block builder,
-          and her <a href="https://gist.github.com/sjengle/01c24c71016a97938beae8c778c15911">Letter count bar chart</a>.
-        </p>
-
-        <h2 id="grade">Grade</h2>
-
-        <style>
-          table.grades tbody tr td:nth-child(1),
-          table.grades tbody tr td:nth-child(2) {
-            text-align: center;
-          }
-        </style>
-
-        <table class="table is-hoverable is-bordered grades">
-          <thead>
-            <tr>
-              <th>Letter</th>
-              <th>Done?</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>D</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau</td>
-            </tr>
-
-            <tr>
-              <td>C</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau</td>
-            </tr>
-
-            <tr>
-              <td>B</td>
-              <td><i class="has-text-success fas fa-check-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau and 1 additional visualization with d3.js</td>
-            </tr>
-
-            <tr>
-              <td>A</td>
-              <td><i class="has-text-danger fas fa-times-circle"></i></td>
-              <td>Created 3 Data Visualizations using Tableau and 2 additional visualization with d3.js</td>
-            </tr>
-          </tbody>
-
-        </table>
 
         <h2 id="about">About</h2>
 
@@ -324,6 +220,126 @@
       });
     }
   });
+
+  //  SVG SCRIPT BELOW THIS COMMENT
+  let csv = 'bararturocsv.csv';
+
+  let config = {
+    'svg': {},
+    'margin': {},
+    'plot': {}
+  };
+
+  config.svg.height = 450;
+  config.svg.width = config.svg.height * 1.618; // golden ratio
+
+  config.margin.top = 10;
+  config.margin.right = 10;
+  config.margin.bottom = 20;
+  config.margin.left = 80;
+
+  config.plot.x = config.margin.left;
+  config.plot.y = config.margin.top;
+  config.plot.width = config.svg.width - config.margin.left - config.margin.right;
+  config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
+
+  var margin = {top: 10, right: 10, bottom: 20, left: 80}
+    , width =960
+    , height = 450
+
+  d3.csv(csv, convertRow).then(drawBarChart);
+
+  let parseColumnName = d3.timeParse('%Y-%m');
+
+  function convertRow(row, index) {
+    let out = {};
+
+    for (let col in row) {
+
+      switch (col) {
+        case 'Passenger Count':
+          out[col] = row[col];
+          break;
+
+        case 'Year of Date':
+          var d = row[col].substring(0,4) + "-" + row[col].substring(4,6);
+          var date = parseColumnName(d);
+          // console.log(col);
+
+          // convert the value to float
+          var value = parseFloat(row[col].substring(0,4));
+
+          out[col] = value;
+
+          break;
+        // these should be our time series values
+        default:
+          // console.log("IN DEFAULT");
+      }
+    }
+
+    return out;
+  }
+
+  // var x_scale = d3.scaleBand().range([0, config.plot.width]);
+  // var y_scale = d3.scaleLinear().range([config.plot.height, 0]);
+
+  var x_scale = d3.scaleBand()
+      .range([0, width])
+
+  var y_scale = d3.scaleLinear()
+      .range([height, 0])
+  var svg;
+
+  function drawBarChart(data) {
+    // console.log(data);
+
+    let passenger_count = data.map(row => row['Passenger Count']);
+    // console.log(passenger_count);
+
+    let dates = data.map(row => row['Year of Date']).filter(
+      (value, index, self) => {return self.indexOf(value) === index}
+    );
+    // console.log(dates);
+
+    dates = dates.sort()
+    let maxPassengers = d3.max(passenger_count);
+    x_scale.domain(dates);
+    y_scale.domain([0,maxPassengers]);
+
+    // get the svg to draw on
+    // svg = d3.select("body").select("svg")
+    //   .attr("width", config.plot.width + config.margin.left + config.margin.right)
+    //   .attr("height", config.plot.height + config.margin.bottom + config.margin.top)
+    //   .append("g")
+    //   .attr("transform", "translate(0" + (config.margin.left - 50) + "," + config.margin.top + ")"); // start of svg
+
+
+    svg = d3.select("body").select("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      // .attr("transform", "translate(0," + config.plot.height + ")")
+      .call(d3.axisBottom(x_scale));
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.axisLeft(y_scale).ticks(10,"f").tickFormat(d3.formatPrefix(".0", 1e5)));
+
+    svg.selectAll(".bar")
+      .data(data)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d, i) { return x_scale(d['Year of Date']) })
+          .attr("y", function(d) { return y_scale(d['Passenger Count']) })
+          .attr("width", x_scale.bandwidth())
+          .attr("height", function(d) { return height - y_scale(d['Passenger Count']) })
+  }
   </script>
   <!-- End mobile menu responsiveness -->
   </body>
