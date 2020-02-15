@@ -118,8 +118,8 @@
         <img  src="GRAPH_2.png"></img>
         </figure>
 
-        <!-- <h2 id="data">d3.js</h2>
-        <svg></svg> -->
+        <h2 id="data">d3.js</h2>
+        <svg></svg>
 
         <p>Data set was taken from <a href=https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg/>Data SF</a> and shows the Air Traffic Passenger Statistics for the San Francisco international airport.</br>
         Data period from July 2005 to September 2019 (as of this date in February 2020)</p>
@@ -195,7 +195,7 @@
       </p>
 
       <p>
-        <a href="https://usf-cs360-spring2020.github.io/homework1-Lelionbear/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+        <a href="https://github.com/Lelionbear" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
           <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
         </a>
 
@@ -228,6 +228,95 @@
       });
     }
   });
+
+  // svg code below
+  let csv = 'arturoline.csv';
+
+  // load data
+  d3.csv(csv, convertRow).then(drawLine);
+
+  let parseRowDate = d3.timeParse('%Y%m');
+  let formatDate = d3.timeFormat('%B');
+
+  //configuration of svg/plot area
+  let config = {
+    'svg': {},
+    'margin': {},
+    'plot': {}
+  };
+
+  config.svg.height = 450;
+  config.svg.width = config.svg.height * 1.618; // golden ratio
+
+  config.margin.top = 10;
+  config.margin.right = 10;
+  config.margin.bottom = 20;
+  config.margin.left = 80;
+
+  config.plot.x = config.margin.left;
+  config.plot.y = config.margin.top;
+  config.plot.width = config.svg.width - config.margin.left - config.margin.right;
+  config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
+
+  // setup svg
+  let svg = d3.select('body').select('svg');
+  svg.attr('width', config.svg.width);
+  svg.attr('height', config.svg.height);
+
+  let parseColumnName = d3.timeParse('%B');
+
+
+
+
+  // function to convert each row
+  // https://github.com/d3/d3-fetch/blob/master/README.md#csv
+  function convertRow(row, index) {
+    console.log(row);
+      let out = {};
+
+      for (let col in row) {
+        console.log(col);
+
+        switch (col) {
+          case 'Passenger Count':
+            console.log("ok");
+            console.log(row[col]);
+            console.log("pc");
+            out[col] = row[col];
+            break;
+
+          case 'Month of Date':
+            // var d = row[col].substring(0,4) + "-" + row[col].substring(4,6);
+            // var date = parseColumnName(row[col]);
+            // console.log(col);
+
+            // convert the value to float
+            // var value = parseFloat(row[col].substring(0,4));
+
+            out[col] = row[col];
+
+            break;
+          // these should be our time series values
+          default:
+            console.log("IN DEFAULT");
+      }
+
+      return out;
+    }
+ }
+
+
+
+  function drawLine(data){
+    let passenger_count = data.map(row => row['Passenger Count']);
+    console.log(passenger_count);
+
+    let dates = data.map(row => row['Month of Date']).filter(
+      (value, index, self) => {return self.indexOf(value) === index}
+    );
+    console.log(dates);
+
+      }
   </script>
   <!-- End mobile menu responsiveness -->
   </body>
